@@ -11,6 +11,7 @@ namespace Tic_Tac_Toe
         //Properties for controling and tracking the game
         char[,] board = new char[3, 3];
         bool gameOn = true;
+        bool isWinner = false;
         char token = 'X';
         bool replay = true;
         string display = "";
@@ -251,55 +252,36 @@ namespace Tic_Tac_Toe
                 Console.WriteLine("Game over. Ended in a tie");
             }
 
+            // check rows
+            if (board[0, 0] == token && board[0, 1] == token && board[0, 2] == token) { gameOn = false; isWinner = true; }
+            if (board[1, 0] == token && board[1, 1] == token && board[1, 2] == token) { gameOn = false; isWinner = true; }
+            if (board[2, 0] == token && board[2, 1] == token && board[2, 2] == token) { gameOn = false; isWinner = true; }
 
-            switch (token)
+            // check columns
+            if (board[0, 0] == token && board[1, 0] == token && board[2, 0] == token) { gameOn = false; isWinner = true; }
+            if (board[0, 1] == token && board[1, 1] == token && board[2, 1] == token) { gameOn = false; isWinner = true; }
+            if (board[0, 2] == token && board[1, 2] == token && board[2, 2] == token) { gameOn = false; isWinner = true; }
+
+            // check diags
+            if (board[0, 0] == token && board[1, 1] == token && board[2, 2] == token) { gameOn = false; isWinner = true; }
+            if (board[0, 2] == token && board[1, 1] == token && board[2, 0] == token) { gameOn = false; isWinner = true; }
+
+            if (isWinner)
             {
-                case 'X':
-                    {
-                        // check rows
-                        if (board[0, 0] == token && board[0, 1] == token && board[0, 2] == token) { gameOn = false; }
-                        if (board[1, 0] == token && board[1, 1] == token && board[1, 2] == token) { gameOn = false; }
-                        if (board[2, 0] == token && board[2, 1] == token && board[2, 2] == token) { gameOn = false; }
-
-                        // check columns
-                        if (board[0, 0] == token && board[1, 0] == token && board[2, 0] == token) { gameOn = false; }
-                        if (board[0, 1] == token && board[1, 1] == token && board[2, 1] == token) { gameOn = false; }
-                        if (board[0, 2] == token && board[1, 2] == token && board[2, 2] == token) { gameOn = false; }
-
-                        // check diags
-                        if (board[0, 0] == token && board[1, 1] == token && board[2, 2] == token) { gameOn = false; }
-                        if (board[0, 2] == token && board[1, 1] == token && board[2, 0] == token) { gameOn = false; }
-
-                        if (gameOn == false)
+                switch (token)
+                {
+                    case 'X':
                         {
                             Console.WriteLine("Game over. Player wins");
+                            break;
                         }
-
-                        break;
-                    }
-                case 'O':
-                    {
-                        // check rows
-                        if (board[0, 0] == token && board[0, 1] == token && board[0, 2] == token) { gameOn = false; }
-                        if (board[1, 0] == token && board[1, 1] == token && board[1, 2] == token) { gameOn = false; }
-                        if (board[2, 0] == token && board[2, 1] == token && board[2, 2] == token) { gameOn = false; }
-
-                        // check columns
-                        if (board[0, 0] == token && board[1, 0] == token && board[2, 0] == token) { gameOn = false; }
-                        if (board[0, 1] == token && board[1, 1] == token && board[2, 1] == token) { gameOn = false; }
-                        if (board[0, 2] == token && board[1, 2] == token && board[2, 2] == token) { gameOn = false; }
-
-                        // check diags
-                        if (board[0, 0] == token && board[1, 1] == token && board[2, 2] == token) { gameOn = false; }
-                        if (board[0, 2] == token && board[1, 1] == token && board[2, 0] == token) { gameOn = false; }
-
-                        if (gameOn == false)
+                    case 'O':
                         {
-                            Console.WriteLine("Game over. Computer wins");
-                        }
 
-                        break;
-                    }
+                            Console.WriteLine("Game over. Computer wins");
+                            break;
+                        }
+                }
             }
         }
     }
