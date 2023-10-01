@@ -97,6 +97,7 @@ namespace Tic_Tac_Toe
                 board = new char[3, 3];
                 turnCount = 0;
                 gameOn = true;
+                isWinner = false;
                 Console.Clear();
             }
             else
